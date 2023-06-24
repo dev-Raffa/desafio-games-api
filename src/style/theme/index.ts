@@ -3,7 +3,7 @@ import { theme } from '@/types/theme';
 const Theme: theme = {
   title: 'Default',
   colors: {
-    primary: '#EBC3CE',
+    primary: '#FFFFFF',
     secondary: '#FFFFFF'
   },
   transitions: 'all 350ms ease;',
