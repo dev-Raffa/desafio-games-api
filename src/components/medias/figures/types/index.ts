@@ -1,8 +1,7 @@
 import type { blockFlex } from '@/components/containers/types';
-import { StaticImageData } from 'next/image';
 
 export interface imgFigureProps {
-  src: string | StaticImageData;
+  src: string;
   alt: string;
   fill?: boolean;
   sizes?: string;

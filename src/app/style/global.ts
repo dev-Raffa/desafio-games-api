@@ -22,7 +22,7 @@ body {
 }
 
 body::-webkit-scrollbar {
-  width: 5px;
+  width: 10px;
   border-left: #FFFFFF solid 1px;
   padding-left: 2px;
 }
@@ -36,6 +36,25 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;
   border: 1px solid ${({ theme }) => theme.colors.primary};
 }
+
+@media screen and (max-width: 1199px) {
+    #section-cards{
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+@media screen and (max-width: 899px) {
+    #section-cards{
+      grid-template-columns: 1fr;
+    }
+  }
+
+@media screen and (max-width: 768px) {
+    html{
+      font-size:50%;
+    }
+  }
+
 `;
 
 export default GlobalStyle;

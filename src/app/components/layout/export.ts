@@ -1,5 +1,5 @@
 import { Header } from './header';
-import { Main } from './main';
 import { Footer } from './footer';
+import { Main } from './main';
 
-export { Header, Main, Footer };
+export { Header, Footer, Main };

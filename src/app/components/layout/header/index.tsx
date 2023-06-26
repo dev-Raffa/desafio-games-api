@@ -1,14 +1,17 @@
 import { HeaderFlex } from '@/components/containers/header';
+import { Logo } from '../../untils/logo';
 
 export const Header = () => {
   return (
     <HeaderFlex
       alignx="space-between"
       aligny="center"
-      width="100%"
-      height="7.5rem"
-      padding="0 10%"
+      width="80%"
+      height="15rem"
       position="sticky"
-    ></HeaderFlex>
+      padding="0 10%"
+    >
+      <Logo />
+    </HeaderFlex>
   );
 };

@@ -1,8 +1,9 @@
 import { Poppins } from 'next/font/google';
 import { ThemeProv } from '@/contexts/theme';
 import StyledComponentsRegistry from '@/style/style-components/registry';
-import GlobalStyle from '../style/global';
-import { Header, Main, Footer } from './components/layout/export';
+import GlobalStyle from './style/global';
+import { Header, Main, Footer } from '@/app/components/layout/export';
+import { GamesProvider } from '@/contexts/gameInformations';
 
 const fontFamily = Poppins({
   subsets: ['latin'],
@@ -10,9 +11,7 @@ const fontFamily = Poppins({
 });
 
 export const metadata = {
-  title: 'vou te contar',
-  description:
-    'fique por dentro dos ultimos acontecimentos sobre a vida dos famosos'
+  title: 'Desafio - Processo seletivo'
 };
 
 export default function RootLayout({
@@ -26,9 +25,11 @@ export default function RootLayout({
         <StyledComponentsRegistry>
           <ThemeProv>
             <GlobalStyle />
-            <Header />
-            <Main>{children}</Main>
-            <Footer />
+            <GamesProvider>
+              <Header />
+              <Main>{children}</Main>
+              <Footer />
+            </GamesProvider>
           </ThemeProv>
         </StyledComponentsRegistry>
       </body>

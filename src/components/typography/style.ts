@@ -9,6 +9,7 @@ import { getBreakPoints } from '../functions';
 export const Title = styled('h1').attrs<typogaphyStyles>(({ level }) => ({
   as: `h${level}`
 }))<typogaphyStyles>`
+  user-select:none;
   font-weight: ${({ weight }) => weight};
   text-align: ${({ align }) => align};
   line-height: ${({lineheight})=>lineheight};
@@ -53,6 +54,7 @@ export const Title = styled('h1').attrs<typogaphyStyles>(({ level }) => ({
 `;
 
 export const Text = styled.p<typogaphyStyles>`
+  user-select:none;
   ${({ size, theme }) =>
     size && `font-size:${theme.typography.sizes[size]}rem;`}
   font-weight: ${({ weight }) => weight};
@@ -67,6 +69,7 @@ export const Text = styled.p<typogaphyStyles>`
 `;
 
 export const TextLink = styled(Link)<typogaphyStyles>`
+  user-select:none;
   text-decoration: none;
   display: inline-block;
   ${({ size, theme }) =>

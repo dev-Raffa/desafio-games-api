@@ -9,7 +9,7 @@ export type cardHeader = {
 };
 
 export interface cardProps extends blockFlex {
-  keyid: string;
+  id?: string;
   height: string;
   header?: cardHeader;
   body?: layoutTypes.children;

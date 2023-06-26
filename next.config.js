@@ -1,11 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   compiler: {
-    styledComponents:{
+    styledComponents: {
       ssr: true
-      
     }
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'www.freetogame.com',
+        port: '',
+        pathname: '/g/**'
+      }
+    ]
   }
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

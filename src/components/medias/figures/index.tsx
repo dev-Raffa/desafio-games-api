@@ -1,28 +1,27 @@
-import Image from 'next/image';
 import { FigureFlex } from '@/components/containers/figure';
 import type { FigureProps } from './types';
 
 export const Figure = ({ img, caption, ...args }: FigureProps) => {
   return (
     <FigureFlex position="relative" overflow="hidden" {...args}>
-      <Image
-        {...img}
-        quality={img.quality ? img.quality : 75}
+      <img
+        src={img.src}
+        alt={img.alt}
         style={{
-          borderRadius: img.borderradius,
+          width: '100%',
+          height: '100%',
           objectFit: img.fit,
+          borderRadius: img.borderradius,
           zIndex: 1
         }}
       />
-
       <figcaption
         style={{
           position: 'absolute',
           width: '100%',
-          bottom: '20px',
-          margin: '0 2%',
+          bottom: '1px',
           zIndex: 2,
-          rowGap: '2px'
+          backgroundColor: '#00000061'
         }}
       >
         {caption}
