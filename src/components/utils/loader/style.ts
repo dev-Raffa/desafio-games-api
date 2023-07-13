@@ -1,4 +1,5 @@
 'use client'
+
 import { styled, keyframes } from "styled-components"
 
 const rotate = keyframes`
@@ -14,7 +15,8 @@ export const LoaderStyle = styled.div`
   display: flex;
   height: 7rem;
   width: 7rem;
-  background-color: ${({theme})=> theme.colors.primary};
+  border-radius: 50%;
+  background-color: transparent;
   align-items: center;
   justify-content: center;
   animation: ${rotate} ease-in 0.6s infinite;

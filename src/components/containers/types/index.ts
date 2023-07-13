@@ -1,6 +1,5 @@
-import { ReactNode, RefObject } from 'react';
 import * as layoutTypes from '@/types/layout';
-import * as themeTypes from '@/types/theme';
+import { FlexStyle, GridStyles } from '@/components/types/global';
 
 export type variant =
   | 'header'
@@ -15,53 +14,18 @@ export type variant =
   | 'table'
   | 'video';
 
-export interface blockStyle {
-  className?: string;
-  id?: string;
-  position?: layoutTypes.position;
-  left?: string;
-  top?: string;
-  right?: string;
-  bottom?: string;
-  alignx?: layoutTypes.alignX;
-  aligny?: layoutTypes.alignY;
-  height?: string;
-  minheight?: string;
-  maxheight?: string;
-  width?: string;
-  maxwidth?: string;
-  minwidth?: string;
-  bgcolor?: keyof themeTypes.colorsBase | string;
-  fontcolor?: keyof themeTypes.colors | string;
-  margin?: string;
-  padding?: string;
-  gap?: string;
-  border?: string;
-  borderradius?: string;
-  boxshadow?: string;
-  overflow?: 'scroll' | 'hidden' | 'visible';
-  transition?: string;
-  zindex?: number;
+export interface baseElementFlex
+  extends React.HTMLAttributes<HTMLElement>,
+    FlexStyle {
+  as: variant;
 }
 
-export interface blockFlex extends blockStyle {
-  direction?: layoutTypes.direction;
-  wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  children?: ReactNode;
-  ref?: RefObject<HTMLDivElement>;
+export interface baseElementGrid
+  extends React.HTMLAttributes<HTMLElement>,
+    GridStyles {
+  as: variant;
 }
 
-export interface blockGrid extends blockStyle {
-  columns?: layoutTypes.columns;
-  templatecolumns?: string;
-  rows?: layoutTypes.rows;
-  templaterows?: string;
-  children?: ReactNode;
-  ref?: RefObject<HTMLDivElement>;
-}
-
-export interface blockProps extends blockFlex, blockGrid {
-  variant: variant;
+export interface blockProps extends FlexStyle, GridStyles {
   display: layoutTypes.display;
-  children?: ReactNode;
 }

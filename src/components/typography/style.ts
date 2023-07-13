@@ -2,13 +2,13 @@
 
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
-import { typogaphyStyles } from './types';
+import { textLinkProps, textProps, titleProps} from './types';
 import { getBreakPoints } from '../functions';
 
 //@ts-ignore
 export const Title = styled('h1').attrs<typogaphyStyles>(({ level }) => ({
   as: `h${level}`
-}))<typogaphyStyles>`
+}))<titleProps>`
   user-select:none;
   font-weight: ${({ weight }) => weight};
   text-align: ${({ align }) => align};
@@ -53,12 +53,14 @@ export const Title = styled('h1').attrs<typogaphyStyles>(({ level }) => ({
   ${({breakpoints})=> breakpoints && getBreakPoints(breakpoints)}
 `;
 
-export const Text = styled.p<typogaphyStyles>`
+export const Text = styled.p<textProps>`
   user-select:none;
+  text-decoration: ${({textdecoration})=> textdecoration};
   ${({ size, theme }) =>
     size && `font-size:${theme.typography.sizes[size]}rem;`}
   font-weight: ${({ weight }) => weight};
   text-align: ${({ align }) => align};
+  margin: ${({margin}) => margin};
   ${({ color, theme }) =>
     color
       ? theme.typography.colors[color]
@@ -68,7 +70,7 @@ export const Text = styled.p<typogaphyStyles>`
   ${({breakpoints})=> breakpoints && getBreakPoints(breakpoints)}
 `;
 
-export const TextLink = styled(Link)<typogaphyStyles>`
+export const TextLink = styled(Link)<textLinkProps>`
   user-select:none;
   text-decoration: none;
   display: inline-block;

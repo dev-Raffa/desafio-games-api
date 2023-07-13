@@ -1,9 +1,7 @@
 import { Poppins } from 'next/font/google';
-import { ThemeProv } from '@/contexts/theme';
 import StyledComponentsRegistry from '@/style/style-components/registry';
 import GlobalStyle from './style/global';
-import { Header, Main, Footer } from '@/app/components/layout/export';
-import { GamesProvider } from '@/contexts/gameInformations';
+import { Providers } from './contexts/providers';
 
 const fontFamily = Poppins({
   subsets: ['latin'],
@@ -23,14 +21,10 @@ export default function RootLayout({
     <html lang="pt-br">
       <body className={fontFamily.className}>
         <StyledComponentsRegistry>
-          <ThemeProv>
+          <Providers>
             <GlobalStyle />
-            <GamesProvider>
-              <Header />
-              <Main>{children}</Main>
-              <Footer />
-            </GamesProvider>
-          </ThemeProv>
+            {children}
+          </Providers>
         </StyledComponentsRegistry>
       </body>
     </html>

@@ -1,36 +1,27 @@
-import { children, breakPoint } from '@/types/layout';
+import { children, breakPoint, hover } from '@/types/layout';
 import { colors } from '@/types/theme';
 
-export interface titleProps {
-  level: '1' | '2' | '3' | '4' | '5';
+export interface styledTypography {
+  textdecoration?: string;
+  margin?: string;
   lineheight?: string;
   weight?: string;
   color: keyof colors | string;
   align?: 'center' | 'left' | 'right' | 'justify';
-  children: children;
   breakpoints?: Array<breakPoint>;
+  hover?: hover;
 }
 
-export interface textProps {
+export interface titleProps extends styledTypography {
+  level: '1' | '2' | '3' | '4' | '5';
+  children?: children;
+}
+
+export interface textProps extends styledTypography {
   size: 'xs' | 's' | 'm' | 'l' | 'xl';
-  lineheight?: string;
-  weight?: string;
-  color: keyof colors | string;
-  align?: 'center' | 'left' | 'right' | 'justify';
-  children: children;
-  breakpoints?: Array<breakPoint>;
+  children?: children;
 }
 
 export interface textLinkProps extends textProps {
   href: string;
-}
-
-export interface typogaphyStyles {
-  level?: '1' | '2' | '3' | '4' | '5';
-  size?: 'xs' | 's' | 'm' | 'l' | 'xl';
-  lineheight?: string;
-  weight?: string;
-  color: keyof colors | string;
-  align?: 'center' | 'left' | 'right' | 'justify';
-  breakpoints?: Array<breakPoint>;
 }

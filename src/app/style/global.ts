@@ -37,6 +37,9 @@ body::-webkit-scrollbar-thumb {
   border: 1px solid ${({ theme }) => theme.colors.primary};
 }
 
+input:-internal-autofill-selected {
+  background-color: transparent;
+}
 @media screen and (max-width: 1199px) {
     #section-cards{
       grid-template-columns: 1fr 1fr;

@@ -29,7 +29,11 @@ export const GamesProvider = ({ children }: { children: ReactNode }) => {
       .then((response) => {
         if (response.status >= 200 && response.status < 299) {
           return response.json();
-        } else if (response.status >= 500 && response.status < 509) {
+        } else if (
+          response.status == 500 ||
+          (response.status > 501 && response.status < 505) ||
+          (response.status > 506 && response.status < 600)
+        ) {
           setErro('O servidor fahou em responder, tente recarregar a página');
           setLoading(false);
         } else {
@@ -76,8 +80,6 @@ export const GamesProvider = ({ children }: { children: ReactNode }) => {
       ))
     : '';
 
-  console.log(genres);
-  console.log(erro);
   return (
     <GamesContext.Provider
       value={{

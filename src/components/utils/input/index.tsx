@@ -1,14 +1,6 @@
-import { ChangeEventHandler } from 'react';
-import { InputStyled, inputStyle } from './style';
+import { InputStyled } from './style/style';
+import { InputProps } from './types';
 
-type inpuProps = inputStyle & {
-  type: string;
-  name: string;
-  placeholder: string;
-  onchange: ChangeEventHandler<HTMLInputElement>;
-  value?: string;
-};
-
-export const Input = ({ onchange, ...args }: inpuProps) => {
-  return <InputStyled onChange={onchange} {...args}></InputStyled>;
+export const Input = ({ ...args }: InputProps) => {
+  return <InputStyled {...args}></InputStyled>;
 };

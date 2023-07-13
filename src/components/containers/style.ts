@@ -3,9 +3,7 @@
 import { styled } from "styled-components";
 import { blockProps } from "./types";
 
-//@ts-ignore
-export const BlockStyle = styled('div').attrs<blockProps>(({variant})=> ({as: variant}))<blockProps>`
-
+export const BlockStyle = styled('div')<blockProps>`
   ${({position})=> position && `position: ${position};`}
   ${({left})=> left && `left: ${left};`}
   ${({top})=> top && `top: ${top};`}
@@ -32,20 +30,24 @@ export const BlockStyle = styled('div').attrs<blockProps>(({variant})=> ({as: va
   ${({borderradius})=> borderradius && `border-radius: ${borderradius};`}
   ${({border})=> border && `border: ${border};`}
   ${({boxshadow})=>boxshadow && `box-shadow:${boxshadow};`}
+  ${({opacity})=> opacity && `opacity: ${opacity};`}
+  ${({transition})=> transition && `transition: ${transition};`}
   ${({ bgcolor, theme }) =>
     bgcolor != undefined
       && theme.colors[bgcolor]
         ? `background-color:${theme.colors[bgcolor]};`
         : `background-color:${bgcolor};`
   }
-  ${({ color, theme }) =>
-    color != undefined
-      && theme.typography.colors[color]
-        ? `color:${theme.typography.colors[color]};`
-        : `color:${color};`
+  ${({ fontcolor, theme }) =>
+    fontcolor != undefined
+      && theme.typography.colors[fontcolor]
+        ? `color:${theme.typography.colors[fontcolor]};`
+        : `color:${fontcolor};`
   }
   ${({overflow}) => overflow && `overflow: ${overflow};`}
   ${({zindex})=> zindex && `z-index: ${zindex};`}
+
+  ${({before})=> before && `&&::before { ${before} }`}
 
   ::-webkit-scrollbar {
     width: 0;
