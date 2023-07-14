@@ -1,6 +1,6 @@
 import { ConteinerFlex } from '@/components/containers';
-import { FlexStyle } from '@/components/types/global';
+import { cardProps } from '../types';
 
-export const CardWrap = ({ ...args }: FlexStyle) => {
+export const CardWrap = ({ ...args }: cardProps) => {
   return <ConteinerFlex as="article" {...args}></ConteinerFlex>;
 };

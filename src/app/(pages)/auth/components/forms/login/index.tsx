@@ -9,8 +9,9 @@ import { userSignin } from '@/app/services/firebase/auth/signin';
 import { Form } from '@/components/form';
 import * as style from '../styles';
 import { loginForm, loginFormSchema } from './schema';
-import { useUserContext } from '@/app/contexts/user/context';
 import type { user } from '@/types/user';
+import { login } from '@/redux/slices/user';
+import { useAppDispatch } from '@/redux/hook';
 
 type resp = {
   result: string;
@@ -18,9 +19,9 @@ type resp = {
 };
 
 export function LoginForm() {
+  const dispatch = useAppDispatch();
   const [msgError, setMsgError] = useState('');
   const router = useRouter();
-  const { setUser } = useUserContext();
   const {
     register,
     handleSubmit,
@@ -32,7 +33,7 @@ export function LoginForm() {
     console.log(resp);
     switch (resp.result) {
       case 'Success': {
-        resp.user && setUser(resp.user);
+        resp.user && dispatch(login(resp.user));
         router.push('/');
         break;
       }

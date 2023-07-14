@@ -1,6 +1,6 @@
 import { ConteinerFlex } from '@/components/containers';
-import { FlexStyle } from '@/components/types/global';
+import { cardProps } from '../types';
 
-export const CardFooter = ({ ...args }: FlexStyle) => {
+export const CardFooter = ({ ...args }: cardProps) => {
   return <ConteinerFlex as={'footer'} {...args}></ConteinerFlex>;
 };

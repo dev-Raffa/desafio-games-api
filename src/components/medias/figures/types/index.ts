@@ -1,4 +1,8 @@
-import type { blockFlex } from '@/components/containers/types';
+import { FlexStyle } from '@/components/types/global';
+
+export interface figureWrap
+  extends FlexStyle,
+    React.HTMLAttributes<HTMLElement> {}
 
 export interface imgFigureProps {
   src: string;
@@ -12,9 +16,4 @@ export interface imgFigureProps {
   height?: number | `${number}`;
   width?: number | `${number}`;
   zindex?: number;
-}
-
-export interface FigureProps extends blockFlex {
-  img: imgFigureProps;
-  caption?: blockFlex['children'] | string;
 }

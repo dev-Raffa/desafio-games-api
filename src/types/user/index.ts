@@ -1,5 +1,5 @@
 export interface user {
-  name: string;
-  userId: string;
+  name: string | null;
+  userId: string | null;
   isLogged: boolean;
 }

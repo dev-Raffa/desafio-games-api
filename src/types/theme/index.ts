@@ -42,3 +42,7 @@ export interface theme {
   typography: typography;
   buttons: buttons;
 }
+
+export interface themeContext {
+  theme: theme;
+}

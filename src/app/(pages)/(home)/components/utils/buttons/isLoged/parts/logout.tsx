@@ -1,20 +1,18 @@
 'use client';
 
-import { useUserContext } from '@/app/contexts/user/context';
 import { Button } from '@/components/buttons';
+import { useAppDispatch } from '@/redux/hook';
 import { useRouter } from 'next/navigation';
 
 export const Logout = () => {
-  const { setUser } = useUserContext();
   const router = useRouter();
+  const dispatch = useAppDispatch();
 
-  function logout() {
-    setUser(null);
-    router.refresh();
-  }
+ 
 
   return (
-    <Button.wrap onClick={logout} bgcolor="transparent" border="none">
+    <Button.wrap onClick={() => { dispatch(Logout());
+      router.refresh()}} bgcolor="transparent" border="none">
       <Button.text color="primary" size="m" textdecoration="underline">
         sair
       </Button.text>

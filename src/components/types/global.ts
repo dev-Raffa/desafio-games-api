@@ -37,7 +37,6 @@ interface globalStyles {
 export interface FlexStyle extends globalStyles {
   direction?: layoutTypes.direction;
   wrap?: 'nowrap' | 'wrap' | 'wrap-reverse';
-  children?: layoutTypes.children;
 }
 
 export interface GridStyles extends globalStyles {

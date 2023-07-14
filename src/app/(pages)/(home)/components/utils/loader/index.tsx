@@ -1,13 +1,11 @@
 'use client';
 
-import { useContext } from 'react';
 import { RiLoader3Line } from 'react-icons/ri';
-import { GamesContext } from '@/contexts/gameInformations';
 import { Loader } from '@/components/utils/loader';
 import { ConteinerFlex } from '@/components/containers';
 
 export const Loading = () => {
-  const { loading } = useContext(GamesContext);
+  const loading = false;
 
   return loading ? (
     <ConteinerFlex
