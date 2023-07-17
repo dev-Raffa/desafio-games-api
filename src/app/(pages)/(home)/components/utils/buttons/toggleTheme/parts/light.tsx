@@ -3,13 +3,16 @@
 import { Button } from '@/components/buttons';
 import { FiSun } from 'react-icons/fi';
 import * as styles from '../styles';
-import { useThemeContext } from '@/app/contexts/theme/context';
+import { useAppDispatch } from '@/redux/hook';
+import { toggle } from '@/redux/models/theme';
+import lightTheme from '@/app/style/themes/light';
 
 export const ButtonGoToTheThemeLight = () => {
-  const { toggleTheme } = useThemeContext();
+  const dispatch = useAppDispatch();
+
   return (
     <Button.wrap
-      onClick={toggleTheme}
+      onClick={() => dispatch(toggle(lightTheme))}
       aria-label="mudar para o tema light"
       {...styles.ButtonSun}
     >

@@ -1,11 +1,11 @@
 'use client';
 
-import { useUserContext } from '@/app/contexts/user/context';
 import { Logout } from './parts/logout';
 import { Login } from './parts/login';
+import { useAppSelector } from '@/redux/hook';
 
 export const IsLoged = () => {
-  const { user } = useUserContext();
+  const isLogged = useAppSelector((state) => state.user.isLogged);
 
-  return user?.isLogged ? <Logout /> : <Login />;
+  return isLogged ? <Logout /> : <Login />;
 };

@@ -1,7 +1,7 @@
 import { ConteinerFlex } from '@/components/containers';
-import { FlexStyle } from '@/components/types/global';
+import { figureWrap } from '../types';
 
-export const FigureWrap = ({ ...args }: FlexStyle) => {
+export const FigureWrap = ({ ...args }: figureWrap) => {
   return (
     <ConteinerFlex as={'figure'} position="relative" {...args}></ConteinerFlex>
   );

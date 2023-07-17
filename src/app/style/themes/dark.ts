@@ -10,8 +10,8 @@ const darkTheme: theme = {
   transitions: 'all 350ms ease;',
   typography: {
     sizes: {
-      xs: 1,
-      s: 1.4,
+      xs: 0.8,
+      s: 1.2,
       m: 1.8,
       l: 2.2,
       xl: 2.8,

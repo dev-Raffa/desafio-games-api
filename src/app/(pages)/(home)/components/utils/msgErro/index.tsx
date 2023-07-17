@@ -1,14 +1,13 @@
 'use client';
 
-import { useContext } from 'react';
 import { BiMessageSquareError } from 'react-icons/bi';
-import { GamesContext } from '@/contexts/gameInformations';
+
 import { Icon } from '@/components/medias/icons';
 import { Text } from '@/components/typography/texts';
 import { ConteinerFlex } from '@/components/containers';
 
 export const MsgError = () => {
-  const { erro } = useContext(GamesContext);
+  const erro = false;
   return (
     <ConteinerFlex
       as={'section'}

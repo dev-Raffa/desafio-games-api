@@ -4,13 +4,14 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useRouter } from 'next/navigation';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useAppDispatch } from '@/redux/hook';
 import { CiLock, CiMail } from 'react-icons/ci';
-import { userSignin } from '@/app/services/firebase/auth/signin';
+import { userSignin } from '@/app/services/firebase/user/controller';
 import { Form } from '@/components/form';
 import * as style from '../styles';
 import { loginForm, loginFormSchema } from './schema';
-import { useUserContext } from '@/app/contexts/user/context';
 import type { user } from '@/types/user';
+import { login } from '@/redux/models/user';
 
 type resp = {
   result: string;
@@ -18,9 +19,9 @@ type resp = {
 };
 
 export function LoginForm() {
+  const dispatch = useAppDispatch();
   const [msgError, setMsgError] = useState('');
   const router = useRouter();
-  const { setUser } = useUserContext();
   const {
     register,
     handleSubmit,
@@ -29,10 +30,9 @@ export function LoginForm() {
 
   const submit = async (data: loginForm) => {
     const resp: resp = await userSignin(data.email, data.password);
-    console.log(resp);
     switch (resp.result) {
       case 'Success': {
-        resp.user && setUser(resp.user);
+        resp.user && dispatch(login(resp.user));
         router.push('/');
         break;
       }

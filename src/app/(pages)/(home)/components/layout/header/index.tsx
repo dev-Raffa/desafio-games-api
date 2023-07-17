@@ -9,13 +9,18 @@ export const Header = () => {
       as={'header'}
       alignx="space-between"
       aligny="center"
-      width="80%"
+      width="100%"
       height="7.5rem"
       position="sticky"
       padding="0 10%"
     >
       <Logo />
-      <ConteinerFlex as="section" alignx="center" width="fit-content">
+      <ConteinerFlex
+        as="section"
+        alignx="center"
+        width="fit-content"
+        gap="1.5rem"
+      >
         <ToggleTheme />
         <IsLoged />
       </ConteinerFlex>

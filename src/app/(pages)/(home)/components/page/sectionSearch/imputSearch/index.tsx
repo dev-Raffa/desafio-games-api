@@ -1,18 +1,25 @@
 'use client';
 
-import { useContext } from 'react';
-import { GamesContext } from '@/app/contexts/game/context';
 import { InputStyled } from '@/components/utils/input/style/style';
+import { useAppDispatch } from '@/redux/hook';
+import { filteredGamesByTitle } from '@/redux/models/games/slice';
+import { useState } from 'react';
 
 export const InputSearch = () => {
-  const { search, setSearch } = useContext(GamesContext);
+  const [value, setValue] = useState<string>('');
+  const despatch = useAppDispatch();
+
+  const handleChange = (value: string) => {
+    despatch(filteredGamesByTitle(value));
+    setValue(value);
+  };
 
   return (
     <InputStyled
       type="search"
       placeholder="Pesquisar"
-      onChange={(e) => setSearch(e.target.value)}
-      value={search}
+      onChange={(e) => handleChange(e.target.value)}
+      value={value}
       width="30%"
       minwidth="300px"
       height="3rem"

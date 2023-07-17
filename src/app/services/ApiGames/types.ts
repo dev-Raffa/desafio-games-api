@@ -10,17 +10,17 @@ export interface gameInfos {
   developer: string;
   release_date: string;
   freetogame_profile_url: string;
+  favorite?: boolean;
+  rating?: number;
 }
 
+export type games = Array<gameInfos>;
+
 export interface gameInformationsProps {
-  games: Array<gameInfos>;
-  genres: Array<string>;
-  erro?: string;
-  search?: string;
-  setSearch: (value: string) => void;
-  gamesFilteredBySearch: Array<gameInfos>;
-  genreFilter?: string;
-  selectGenre: (value: string) => void;
-  gamesFilteredByGenre: Array<gameInfos>;
-  loading: boolean;
+  games: games | null;
+  genres: Array<string> | null;
+  filterGenre: string;
+  filterTitle: string;
+  filterError?: string;
+  filteredGames: Array<gameInfos> | null;
 }

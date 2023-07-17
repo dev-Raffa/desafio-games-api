@@ -7,14 +7,14 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "lint": "eslint src --max-warnings=7",
+    "lint": "eslint src --max-warnings=6 --fix",
     "commit": "git commit -m",
     "postinstall": "husky install",
     "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*": [
-      "yarn lint --fix"
+      "yarn lint "
     ]
   },
   "dependencies": {
@@ -23,6 +23,7 @@
     "@testing-library/dom": "^9.3.0",
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^14.0.0",
+    "@types/redux-logger": "^3.0.9",
     "encoding": "^0.1.13",
     "firebase": "^10.0.0",
     "jest-environment-jsdom": "^29.5.0",
@@ -32,6 +33,7 @@
     "react-hook-form": "^7.45.1",
     "react-redux": "^8.1.1",
     "redux": "^4.2.1",
+    "redux-logger": "^3.0.6",
     "styled-components": "^6.0.0-rc.3",
     "ts-node": "^10.9.1",
     "typescript": "^5.1.3",

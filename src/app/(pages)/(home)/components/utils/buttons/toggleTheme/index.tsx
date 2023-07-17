@@ -1,13 +1,13 @@
 'use client';
 
-import { useThemeContext } from '@/app/contexts/theme/context';
+import { useAppSelector } from '@/redux/hook';
 import { ButtonGoToTheThemeDark } from './parts/dark';
 import { ButtonGoToTheThemeLight } from './parts/light';
 
 export const ToggleTheme = () => {
-  const { theme } = useThemeContext();
+  const title = useAppSelector((state) => state.theme.title);
 
-  return theme.title === 'Light' ? (
+  return title === 'Light' ? (
     <ButtonGoToTheThemeDark />
   ) : (
     <ButtonGoToTheThemeLight />

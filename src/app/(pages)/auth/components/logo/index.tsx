@@ -5,7 +5,12 @@ import { CgGames } from 'react-icons/cg';
 export const Logo = () => {
   return (
     <>
-      <Icon icon={<CgGames />} height="5rem" width="5rem" color="blue" />
+      <Icon
+        icon={<CgGames width={'3rem'} height={'3rem'} />}
+        height="5rem"
+        width="5rem"
+        color="blue"
+      />
       <Title level="4" color="primary">
         ApiGames
       </Title>

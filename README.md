@@ -19,13 +19,21 @@ A url base da API é [https://games-test-api-81e9fb0d564a.herokuapp.com/api/](ht
 
 ##Desenvolvi o projeto com foco na entrega dos requisistos funcionais, todos os requisitos, foram alcançados.
 
-Imagem da página carregando os dados 
-![image](https://github.com/dev-Raffa/desafio-games-api/assets/113853780/daa5c2e1-f836-4837-bc0a-9da30a016291)
 
 
 Imagem da página de erro:
 ![image](https://github.com/dev-Raffa/desafio-games-api/assets/113853780/c8525902-44f9-4aad-bc36-c0fb64c61dbd)
 
-Imagem da página após o carregamento dos dados ser concluído.
-![image](https://github.com/dev-Raffa/desafio-games-api/assets/113853780/4e342bfb-33ac-42de-8a72-f9f57b1f99f2)
 
+- Utilizar Firebase para realizar autenticação usando email/senha
+- Ter um 🩶 para o usuário favoritar o jogo diretamente na lista, ficando vermelho quando marcado
+- Salvar no firebase os jogos favoritos do usuário, no realtime ou firestore
+- Ter um botão “Favoritos” que apresenta apenas jogos favoritados, permitindo ainda buscar e filtrar estes jogos. Pode ser na própria lista já apresentada ou em uma separada se preferir.
+- Ao lado do coração, ter ★★★★ para o usuário avaliar o jogo, podendo marcar de uma em uma. Ou seja, ele pode escolher 1, 2, 3 ou as 4.
+- Ter uma forma de ordenar por avaliação, vendo os melhores (ou piores) primeiro, clicando novamente para inverter a ordem.
+- Ao carregar a interface, deixar o ❤️ vermelho para os itens favoritos e as ⭐️ amarelas nos itens avaliados
+- Ao acessar sem estar autenticado, os ícones 🩶 e ★ deverão estar visíveis, mas ao clicar irá solicitar a autenticação
+- 👉 Ao obter os jogos da API e os dados do firebase, apresentar. Manter o loading para os jogos. Não precisa de loading enquanto espera o firebase, até porque o firebase devolverá os dados mais rapidamente e pode ser complicado “esperar o firebase” se estiver “escutando o firebase”.
+- A autenticação deve acontecer na rota `/auth/` do frontend, usando o provedor “E-mail/senha” do firebase, onde o usuário poderá criar uma conta ou acessar a conta já existente (se mantendo apenas nesta rota)
+- Escolher um item para aplicar uma animação com CSS, pode ser ao favoritar, ou avaliar, ou quando os itens surgirem
+- Publicar seu projeto online para testarmos (na mesma url de antes)
