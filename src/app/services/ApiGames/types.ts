@@ -11,7 +11,7 @@ export interface gameInfos {
   release_date: string;
   freetogame_profile_url: string;
   favorite?: boolean;
-  rating?: 0 | 1 | 2 | 3 | 4;
+  rating?: number;
 }
 
 export type games = Array<gameInfos>;
@@ -19,6 +19,8 @@ export type games = Array<gameInfos>;
 export interface gameInformationsProps {
   games: games | null;
   genres: Array<string> | null;
-  filter?: string;
+  filterGenre: string;
+  filterTitle: string;
+  filterError?: string;
   filteredGames: Array<gameInfos> | null;
 }

@@ -3,83 +3,67 @@
 import { Card } from '@/components/cards';
 import { Figure } from '@/components/medias/figures';
 import { Text } from '@/components/typography/texts';
-import { Rating } from './rating';
 import { ConteinerFlex } from '@/components/containers';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { addGames } from '@/redux/slices/games';
 import { gameInfos, games } from '@/app/services/ApiGames/types';
+import { addGames } from '@/redux/models/games/slice';
+import { RatingStars } from './rating';
+import { ButtonFavorite } from './isFavorite';
+import { styled } from './styles';
 
 function generateCards(item: gameInfos, index: number) {
   return (
-    <Card.wrap
-      key={index}
-      position="relative"
-      direction="column"
-      bgcolor="secondary"
-      height="40rem"
-      width="30%"
-      maxwidth="400px"
-      minwidth="300px"
-      borderradius="5px"
-      overflow="hidden"
-      boxshadow="1px 1px 5px 0px"
-    >
+    <Card.wrap key={index} {...styled.wrap}>
       <Card.body direction="column">
-        <Figure.wrap position="relative" overflow="hidden" height="17.5rem">
+        <Figure.wrap {...styled.figure.wrap}>
           <Figure.img
             src={item.thumbnail}
             alt={item.short_description}
             fit="cover"
           />
           <Figure.caption>
-            <Text size="m" color="primary" align="center">
-              {item.title}
-            </Text>
+            <Text {...styled.figure.text}>{item.title}</Text>
           </Figure.caption>
         </Figure.wrap>
-        <Text size="m" color="primary" align="justify" margin="0 1rem">
-          {item.short_description}
-        </Text>
-      </Card.body>
-      <Card.footer
-        position="absolute"
-        bottom="0"
-        alignx="space-around"
-        height="3rem"
-        width="100%"
-        bgcolor="white"
-      >
-        <ConteinerFlex
-          as={'section'}
-          width="50%"
-          alignx="space-between"
-          aligny="center"
-          fontcolor="yellow"
-        >
-          <Rating />
+        <ConteinerFlex as={'section'} {...styled.section}>
+          <RatingStars id={item.id} value={item.rating ? item.rating : 0} />
+          <ButtonFavorite
+            idGame={item.id}
+            favorite={item.favorite ? item.favorite : false}
+          />
         </ConteinerFlex>
-      </Card.footer>
+        <Text {...styled.description}>{item.short_description}</Text>
+      </Card.body>
     </Card.wrap>
   );
 }
 
 export const Cards = ({ data }: { data: games }) => {
   const dispatch = useAppDispatch();
-  dispatch(addGames(data));
-
+  if (useAppSelector((state) => state.games.games) == null) {
+    dispatch(addGames(data));
+  }
   const games = useAppSelector((state) => state.games.games);
   const filteredGames = useAppSelector((state) => state.games.filteredGames);
+  const filterError = useAppSelector((state) => state.games.filterError);
+
   return (
     <>
-      {filteredGames && filteredGames.length > 0
-        ? filteredGames.map((item: gameInfos, index: number) => {
-            return generateCards(item, index);
-          })
-        : games && games.length > 0
-        ? games.map((item: gameInfos, index: number) => {
-            return generateCards(item, index);
-          })
-        : ''}
+      {filterError ? (
+        <Text color="red" size="s">
+          {filterError}
+        </Text>
+      ) : filteredGames && filteredGames.length > 0 ? (
+        filteredGames.map((item: gameInfos, index: number) => {
+          return generateCards(item, index);
+        })
+      ) : games && games.length > 0 ? (
+        games.map((item: gameInfos, index: number) => {
+          return generateCards(item, index);
+        })
+      ) : (
+        ''
+      )}
     </>
   );
 };

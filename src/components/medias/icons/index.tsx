@@ -1,10 +1,10 @@
-import { ReactElement } from 'react';
+import React, { ReactElement } from 'react';
 import { StyledIcon, IconStyleProps } from './style';
 
-type IconProps = IconStyleProps & {
+export type iconProps = IconStyleProps & {
   icon: ReactElement;
 };
 
-export const Icon = ({ icon, ...args }: IconProps) => {
+export const Icon = ({ icon, ...args }: iconProps) => {
   return <StyledIcon {...args}>{icon}</StyledIcon>;
 };

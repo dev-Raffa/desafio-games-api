@@ -1,0 +1,33 @@
+.section {
+  position: 'fixed';
+  justify-content: 'center';
+  align-items: 'center';
+  background-color: '#bbb8b80';
+  height: '100%';
+  width: '80%';
+}
+
+.loader {
+  display: flex;
+  height: 7rem;
+  width: 7rem;
+  border-radius: 50%;
+  background-color: transparent;
+  align-items: center;
+  justify-content: center;
+  animation: rotate ease-in 0.6s infinite;
+}
+.svg{
+  height: 100%;
+  width: 100%;
+}
+
+@keyframes rotate {
+  from{
+    transform: rotate(0deg)
+  }
+  to{
+    transform: rotate(360deg);
+  }
+}
+

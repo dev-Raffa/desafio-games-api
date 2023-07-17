@@ -910,6 +910,7 @@ const obj1 = [
 ];
 
 const favoriteGames: Array<object> = [];
+
 obj1.map((item, index) => {
   const i = games.findIndex(({ id }) => {
     return id === item.id;

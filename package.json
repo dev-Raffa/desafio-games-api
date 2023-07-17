@@ -7,14 +7,14 @@
     "build": "next build",
     "start": "next start",
     "test": "jest",
-    "lint": "eslint src --max-warnings=7",
+    "lint": "eslint src --max-warnings=6 --fix",
     "commit": "git commit -m",
     "postinstall": "husky install",
     "prepare": "husky install"
   },
   "lint-staged": {
     "src/**/*": [
-      "yarn lint --fix"
+      "yarn lint "
     ]
   },
   "dependencies": {

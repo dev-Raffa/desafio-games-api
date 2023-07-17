@@ -1,8 +1,7 @@
 import { Poppins } from 'next/font/google';
 import StyledComponentsRegistry from '@/style/style-components/registry';
 import { Providers } from '@/redux';
-import { ThemeContextProvider } from './contexts/theme/provider';
-import GlobalStyle from './style/global';
+import { ThemeContextProvider } from './style';
 
 const fontFamily = Poppins({
   subsets: ['latin'],
@@ -23,9 +22,7 @@ export default function RootLayout({
       <body className={fontFamily.className}>
         <StyledComponentsRegistry>
           <Providers>
-            <ThemeContextProvider>
-              <GlobalStyle />
-              {children}</ThemeContextProvider>
+            <ThemeContextProvider>{children}</ThemeContextProvider>
           </Providers>
         </StyledComponentsRegistry>
       </body>

@@ -3,6 +3,7 @@ import { InputSearch } from './components/page/sectionSearch/imputSearch';
 import { SelectGenre } from './components/page/sectionSearch/selectGenre';
 import { ConteinerFlex } from '@/components/containers';
 import { getGames } from '@/app/services/ApiGames/getData';
+import { AlertLoging } from './components/utils/offcanvas';
 
 export default async function Home() {
   const games = await getGames();
@@ -12,10 +13,14 @@ export default async function Home() {
       <ConteinerFlex
         as={'section'}
         alignx="space-between"
-        aligny="center"
+        aligny="end"
+        height="15rem"
+        width="100%"
         wrap="wrap"
         gap="1.75rem 30%"
+        padding="2rem 0"
       >
+        <AlertLoging />
         <InputSearch />
         <SelectGenre />
       </ConteinerFlex>

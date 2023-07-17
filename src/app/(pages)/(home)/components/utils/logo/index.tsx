@@ -13,7 +13,12 @@ export const Logo = () => {
       alignx="center"
       aligny="center"
     >
-      <Icon color="blue" icon={<CgGames />} height="2rem" width="2rem"></Icon>
+      <Icon
+        color="blue"
+        icon={<CgGames height="100%" width="100%" />}
+        height="5rem"
+        width="5rem"
+      ></Icon>
       <Text color="blue" size="s">
         API Games
       </Text>

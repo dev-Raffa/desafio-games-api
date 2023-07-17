@@ -3,15 +3,17 @@
 import { styled } from "styled-components"
 
 export type selectStyle = {
-  width: string;
-  minwidth:string;
-  height: string;
-  border: string;
-  borderradius: string;
-  fontsize: string;
-  padding: string;
+  display?: string;
+  width?: string;
+  minwidth?:string;
+  height?: string;
+  border?: string;
+  borderradius?: string;
+  fontsize?: string;
+  padding?: string;
 }
 export const SelectStyled = styled.select<selectStyle>`
+${({display})=>display && `display: ${display};`}
 ${({width})=>width && `width: ${width};`}
 ${({minwidth})=>minwidth && `min-width: ${minwidth};`}
 ${({height})=>height && `height: ${height};`}

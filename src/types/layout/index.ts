@@ -1,7 +1,7 @@
 import { ReactNode } from 'react';
 
 export type position = 'absolute' | 'fixed' | 'relative' | 'sticky';
-export type display = 'flex' | 'grid';
+export type display = 'flex' | 'grid' | 'none';
 export type direction = 'row' | 'column';
 export type columns = 12 | 16 | 'auto-fill';
 export type rows = 'auto-fill' | number;

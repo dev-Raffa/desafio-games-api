@@ -71,7 +71,7 @@ export const FormButtonsWrap: FlexStyle = {
 };
 
 export const FormButtonText: textProps = {
-  color: 'CurrentColor',
+  color: 'white',
   size: 's',
   align: 'center'
 };

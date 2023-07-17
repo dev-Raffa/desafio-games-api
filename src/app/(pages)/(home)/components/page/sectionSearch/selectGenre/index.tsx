@@ -2,7 +2,7 @@
 
 import { Select } from '@/components/utils/selection';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { setFilteredGames } from '@/redux/slices/games';
+import { filteredGamesByGenre } from '@/redux/models/games/slice';
 
 export const SelectGenre = () => {
   const genres = useAppSelector((state) => state.games.genres);
@@ -11,7 +11,7 @@ export const SelectGenre = () => {
   return (
     <Select
       name="genreFilter"
-      onchange={(e) => dispatch(setFilteredGames(e.currentTarget.value))}
+      onchange={(e) => dispatch(filteredGamesByGenre(e.currentTarget.value))}
       width="30%"
       minwidth="300px"
       height="3rem"
