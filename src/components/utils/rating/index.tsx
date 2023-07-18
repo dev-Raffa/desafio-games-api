@@ -1,15 +1,18 @@
 'use client';
 
-import { useState, useEffect, MouseEventHandler } from 'react';
+import { useState, useEffect } from 'react';
 import { ConteinerFlex } from '@/components/containers';
 import { Button } from '@/components/buttons';
 import { iconProps } from '@/components/medias/icons';
 import { FlexStyle } from '@/components/types/global';
 import { styleButtonWrap } from './style';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
-import { saveGameRating } from '@/app/services/firebase/games/controller';
+import {
+  updateFavoriteGame,
+  addFavoriteGame
+} from '@/app/services/firebase/games/controller';
 import { setIsShowOffCanvas } from '@/redux/models/offCanvas/slice';
-import { setOneRating } from '@/redux/models/games/slice';
+import { setRating } from '@/redux/models/games/slice';
 
 export interface ratingProps {
   idItem: number;
@@ -20,7 +23,6 @@ export interface ratingProps {
   colorSelect: string;
   colorDefault: string;
   name: string;
-  onclick?: MouseEventHandler<HTMLButtonElement>;
 }
 
 export const Rating = ({
@@ -38,21 +40,40 @@ export const Rating = ({
 
   const dispatch = useAppDispatch();
   const userId = useAppSelector((state) => state.user.userId);
+  const games = useAppSelector((state) => state.games.games);
+  const obj =
+    games &&
+    games.find((games) => games.id.toString().includes(idItem.toString()));
+  const isFavorite = obj && obj.favorite;
 
   useEffect(() => {
     setValue(defaultValue);
   }, [defaultValue]);
 
   async function handleClick(id: number, value: number) {
-    if (userId) {
-      const resp: string = await saveGameRating(userId, {
-        gameId: id,
-        rating: value
-      });
+    if (userId && isFavorite) {
+      const resp: string = await updateFavoriteGame(
+        userId,
+        id,
+        isFavorite,
+        value
+      );
       switch (resp) {
         case 'Success': {
           setDefaultValue(value);
-          dispatch(setOneRating({ idGame: id, rating: value }));
+          dispatch(setRating({ idGame: id, rating: value }));
+          break;
+        }
+        default: {
+          console.log(resp);
+        }
+      }
+    } else if (userId) {
+      const resp: string = await addFavoriteGame(userId, id, value, false);
+      switch (resp) {
+        case 'Success': {
+          setDefaultValue(value);
+          dispatch(setRating({ idGame: id, rating: value }));
           break;
         }
         default: {

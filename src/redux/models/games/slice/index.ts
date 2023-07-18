@@ -25,6 +25,25 @@ export const gamesSlice = createSlice({
         state.genres = arr.filter((este, i) => arr.indexOf(este) === i).sort();
       }
     },
+    filteredFavoritesGames: (state) => {
+      if (state.filteredGames && state.filteredGames.length > 0) {
+        const arr: games = [];
+        state.filteredGames.map((item) => {
+          if (item.favorite) {
+            arr.push(item);
+          }
+        });
+        state.filteredGames = arr;
+      } else if (state.games) {
+        const arr: games = [];
+        state.games.map((item) => {
+          if (item.favorite) {
+            arr.push(item);
+          }
+        });
+        state.filteredGames = arr;
+      }
+    },
     filteredGamesByGenre: (state, action: PayloadAction<string>) => {
       state.filterGenre = action.payload;
       if (
@@ -131,7 +150,7 @@ export const gamesSlice = createSlice({
         state.games.splice(i, 1, obj);
       }
     },
-    setOneRating: (
+    setRating: (
       state,
       action: PayloadAction<{ idGame: number; rating: number }>
     ) => {
@@ -145,6 +164,34 @@ export const gamesSlice = createSlice({
         obj.rating = action.payload.rating;
         state.games.splice(i, 1, obj);
       }
+    },
+    favoriteGamesSortedByHighestRating: (state) => {
+      state.games &&
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        state.games.sort((a, b) => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
+          if (a.rating > b.rating) {
+            return -1;
+          } else {
+            return true;
+          }
+        });
+    },
+    favoriteGamesSortedByLowestRating: (state) => {
+      state.games &&
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        state.games?.sort((a, b) => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
+          if (a.rating < b.rating) {
+            return -1;
+          } else {
+            return true;
+          }
+        });
     }
   }
 });
@@ -154,6 +201,9 @@ export const {
   filteredGamesByGenre,
   filteredGamesByTitle,
   setIsFavorite,
-  setOneRating
+  setRating,
+  favoriteGamesSortedByHighestRating,
+  favoriteGamesSortedByLowestRating,
+  filteredFavoritesGames
 } = gamesSlice.actions;
 export const gamesReducer = gamesSlice.reducer;

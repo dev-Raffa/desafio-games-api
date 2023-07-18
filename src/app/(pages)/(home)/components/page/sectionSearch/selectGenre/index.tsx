@@ -13,7 +13,7 @@ export const SelectGenre = () => {
       name="genreFilter"
       onchange={(e) => dispatch(filteredGamesByGenre(e.currentTarget.value))}
       width="30%"
-      minwidth="300px"
+      minwidth="250px"
       height="3rem"
       border="none"
       borderradius="0.5rem"

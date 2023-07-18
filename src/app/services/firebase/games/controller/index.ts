@@ -11,13 +11,16 @@ import { favoriteGamesDto } from '../model';
 
 export async function addFavoriteGame(
   uuid: string,
-  { gameId }: favoriteGamesDto
+  gameId: number,
+  rating?: number,
+  favorite?: boolean
 ) {
   const resp = await set(
-    ref(getDatabase(), `user/${uuid}/favorites-games/${gameId}`),
+    ref(getDatabase(), `users/${uuid}/favorites-games/${gameId}`),
     {
       id: gameId,
-      favorite: true
+      favorite: favorite,
+      rating: rating
     }
   )
     .then(() => {
@@ -30,7 +33,7 @@ export async function addFavoriteGame(
   return resp;
 }
 
-export async function getFavoriteGames(
+export async function getOneFavoriteGames(
   uuid: string,
   { gameId }: favoriteGamesDto
 ) {
@@ -50,15 +53,35 @@ export async function getFavoriteGames(
   return resp;
 }
 
-export async function saveGameRating(
+export async function getAllFavoriteGames(uuid: string) {
+  const dbRef = ref(getDatabase());
+  const resp = await get(child(dbRef, `user/${uuid}/favorites-games/`))
+    .then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.toJSON();
+      } else {
+        return 'Not found';
+      }
+    })
+    .catch((e) => {
+      return e.message;
+    });
+
+  return resp;
+}
+
+export async function updateFavoriteGame(
   uuid: string,
-  { gameId, rating }: favoriteGamesDto
+  gameId: number,
+  isFavorite?: boolean,
+  rating?: number
 ) {
   const resp = await update(
-    ref(getDatabase(), `user/${uuid}/favorites-games/${gameId}`),
+    ref(getDatabase(), `users/${uuid}/favorites-games/${gameId}`),
     {
       id: gameId,
-      rating: rating
+      rating: rating,
+      favorite: isFavorite
     }
   )
     .then(() => {
@@ -75,7 +98,7 @@ export async function removeFavoriteGame(
   { gameId }: favoriteGamesDto
 ) {
   const resp = await remove(
-    ref(getDatabase(), `user/${uuid}/favorites-games/${gameId}`)
+    ref(getDatabase(), `users/${uuid}/favorites-games/${gameId}`)
   )
     .then(() => {
       return 'Success';

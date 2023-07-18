@@ -21,7 +21,7 @@ export const InputSearch = () => {
       onChange={(e) => handleChange(e.target.value)}
       value={value}
       width="30%"
-      minwidth="300px"
+      minwidth="250px"
       height="3rem"
       border="none"
       borderradius="0.5rem"
