@@ -6,10 +6,15 @@ import { Text } from '@/components/typography/texts';
 import { ConteinerFlex } from '@/components/containers';
 import { useAppDispatch, useAppSelector } from '@/redux/hook';
 import { gameInfos, games } from '@/app/services/ApiGames/types';
-import { addGames } from '@/redux/models/games/slice';
+import { addGames, setIsFavorite, setRating } from '@/redux/models/games/slice';
 import { RatingStars } from './rating';
 import { ButtonFavorite } from './isFavorite';
 import { styled } from './styles';
+import { getAllFavoriteGames } from '@/app/services/firebase/games/controller';
+
+interface cardProps {
+  data: games;
+}
 
 function generateCards(item: gameInfos, index: number) {
   return (
@@ -38,12 +43,37 @@ function generateCards(item: gameInfos, index: number) {
   );
 }
 
-export const Cards = ({ data }: { data: games }) => {
+export function Cards({ data }: cardProps) {
   const dispatch = useAppDispatch();
-  if (useAppSelector((state) => state.games.games) == null) {
-    dispatch(addGames(data));
+  const userId = useAppSelector((state) => state.user.userId);
+  let allGames = useAppSelector((state) => state.games.games);
+  let favoriteGames: object;
+
+  async function getFavoriteGames() {
+    if (userId) {
+      console.log(userId);
+      favoriteGames = await getAllFavoriteGames(userId);
+      for (const key in favoriteGames) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        const item = favoriteGames[key];
+        item.favorite &&
+          dispatch(
+            setIsFavorite({ idGame: item.id, isFavorite: item.favorite })
+          );
+        console.log(item.rating);
+        item.rating &&
+          dispatch(setRating({ idGame: item.id, rating: item.rating }));
+      }
+    }
   }
-  const games = useAppSelector((state) => state.games.games);
+
+  if (allGames == null) {
+    dispatch(addGames(data));
+    getFavoriteGames();
+  }
+
+  allGames = useAppSelector((state) => state.games.games);
   const filteredGames = useAppSelector((state) => state.games.filteredGames);
   const filterError = useAppSelector((state) => state.games.filterError);
 
@@ -57,8 +87,8 @@ export const Cards = ({ data }: { data: games }) => {
         filteredGames.map((item: gameInfos, index: number) => {
           return generateCards(item, index);
         })
-      ) : games && games.length > 0 ? (
-        games.map((item: gameInfos, index: number) => {
+      ) : allGames && allGames.length > 0 ? (
+        allGames.map((item: gameInfos, index: number) => {
           return generateCards(item, index);
         })
       ) : (
@@ -66,4 +96,4 @@ export const Cards = ({ data }: { data: games }) => {
       )}
     </>
   );
-};
+}
