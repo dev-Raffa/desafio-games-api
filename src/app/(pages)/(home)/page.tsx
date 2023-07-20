@@ -1,12 +1,9 @@
-import { Cards } from './components/page/sectionCards/cards';
-import { InputSearch } from './components/page/sectionSearch/imputSearch';
-import { SelectGenre } from './components/page/sectionSearch/selectGenre';
-import { ConteinerFlex } from '@/components/containers';
 import { getGames } from '@/app/services/ApiGames/getData';
+import { Cards } from './components/page/sectionCards/cards';
+import { ConteinerFlex } from '@/components/containers';
 import { AlertLoging } from './components/utils/offcanvas';
-import { ButtonFavorites } from './components/page/sectionSearch/favorites';
 import { Ordered } from './components/page/sectionSearch/ordered';
-import { Text } from '@/components/typography/texts';
+import { SectionFilters } from './components/page/sectionSearch';
 
 export default async function Home() {
   const games = await getGames();
@@ -14,24 +11,7 @@ export default async function Home() {
   return (
     <>
       <AlertLoging />
-      <ConteinerFlex
-        as={'section'}
-        alignx="center"
-        aligny="end"
-        height="15rem"
-        width="100%"
-        wrap="wrap"
-        gap="1.75rem"
-        padding="2rem 0"
-      >
-        <Text color="primary" size="m">
-          Filtros:
-        </Text>
-        <InputSearch />
-        <SelectGenre />
-        <ButtonFavorites />
-      </ConteinerFlex>
-
+      <SectionFilters />
       <ConteinerFlex as="section" width="100%" alignx="right" aligny="center">
         <Ordered />
       </ConteinerFlex>

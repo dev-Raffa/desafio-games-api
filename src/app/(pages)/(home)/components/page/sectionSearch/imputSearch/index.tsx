@@ -20,10 +20,9 @@ export const InputSearch = () => {
       placeholder="Pesquisar"
       onChange={(e) => handleChange(e.target.value)}
       value={value}
-      width="30%"
-      minwidth="250px"
+      width="25rem"
       height="3rem"
-      border="none"
+      border="1px solid blue"
       borderradius="0.5rem"
       fontsize="2rem"
       padding="0 1rem"

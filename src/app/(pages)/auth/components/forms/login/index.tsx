@@ -12,7 +12,6 @@ import * as style from '../styles';
 import { loginForm, loginFormSchema } from './schema';
 import type { user } from '@/types/user';
 import { login } from '@/redux/models/user';
-import { getAllFavoriteGames } from '@/app/services/firebase/games/controller';
 
 type resp = {
   result: string;
@@ -30,10 +29,6 @@ export function LoginForm() {
   } = useForm<loginForm>({ resolver: zodResolver(loginFormSchema) });
   const submit = async (data: loginForm) => {
     const resp: resp = await userSignin(data.email, data.password);
-    let favoriteGames;
-    resp.user?.userId &&
-      (favoriteGames = await getAllFavoriteGames(resp.user.userId));
-    console.log(favoriteGames);
 
     switch (resp.result) {
       case 'Success': {

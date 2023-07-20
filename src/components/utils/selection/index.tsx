@@ -1,15 +1,15 @@
 import { ChangeEventHandler, ReactNode } from 'react';
 import { SelectStyled, selectStyle } from './style';
 
-type selectProps = selectStyle & {
-  name: string;
-  onchange: ChangeEventHandler<HTMLSelectElement>;
-  children: ReactNode;
-};
+interface selectProps
+  extends selectStyle,
+    React.HTMLAttributes<HTMLSelectElement> {
+  value: string;
+}
 
-export const Select = ({ children, onchange, ...args }: selectProps) => {
+export const Select = ({ children, value, ...args }: selectProps) => {
   return (
-    <SelectStyled onChange={onchange} {...args}>
+    <SelectStyled value={value} {...args}>
       {children}
     </SelectStyled>
   );

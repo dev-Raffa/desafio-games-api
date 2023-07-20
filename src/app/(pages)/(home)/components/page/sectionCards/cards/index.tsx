@@ -31,10 +31,15 @@ function generateCards(item: gameInfos, index: number) {
           </Figure.caption>
         </Figure.wrap>
         <ConteinerFlex as={'section'} {...styled.section}>
-          <RatingStars id={item.id} value={item.rating ? item.rating : 0} />
+          <RatingStars
+            key={`rating-item-${item.id}`}
+            id={item.id}
+            value={item.rating ? item.rating : 0}
+          />
           <ButtonFavorite
+            key={`favorite-item-${item.id}`}
             idGame={item.id}
-            favorite={item.favorite ? item.favorite : false}
+            favorite={item.favorite}
           />
         </ConteinerFlex>
         <Text {...styled.description}>{item.short_description}</Text>
@@ -51,7 +56,6 @@ export function Cards({ data }: cardProps) {
 
   async function getFavoriteGames() {
     if (userId) {
-      console.log(userId);
       favoriteGames = await getAllFavoriteGames(userId);
       for (const key in favoriteGames) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -61,7 +65,6 @@ export function Cards({ data }: cardProps) {
           dispatch(
             setIsFavorite({ idGame: item.id, isFavorite: item.favorite })
           );
-        console.log(item.rating);
         item.rating &&
           dispatch(setRating({ idGame: item.id, rating: item.rating }));
       }
@@ -70,6 +73,8 @@ export function Cards({ data }: cardProps) {
 
   if (allGames == null) {
     dispatch(addGames(data));
+    getFavoriteGames();
+  } else {
     getFavoriteGames();
   }
 

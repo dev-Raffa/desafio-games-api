@@ -38,7 +38,9 @@ export async function getOneFavoriteGames(
   { gameId }: favoriteGamesDto
 ) {
   const dbRef = ref(getDatabase());
-  const resp = await get(child(dbRef, `user/${uuid}/favorites-games/${gameId}`))
+  const resp = await get(
+    child(dbRef, `users/${uuid}/favorites-games/${gameId}`)
+  )
     .then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.toJSON();
@@ -55,7 +57,7 @@ export async function getOneFavoriteGames(
 
 export async function getAllFavoriteGames(uuid: string) {
   const dbRef = ref(getDatabase());
-  const resp = await get(child(dbRef, `user/${uuid}/favorites-games/`))
+  const resp = await get(child(dbRef, `users/${uuid}/favorites-games/`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         return snapshot.toJSON();

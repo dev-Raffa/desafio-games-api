@@ -18,7 +18,7 @@ export function Logout() {
       bgcolor="transparent"
       border="none"
     >
-      <Button.text color="primary" size="m" textdecoration="underline">
+      <Button.text color="primary" size="m" decoration="underline">
         sair
       </Button.text>
     </Button.wrap>

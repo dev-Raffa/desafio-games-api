@@ -24,6 +24,14 @@ export const gamesSlice = createSlice({
         });
         state.genres = arr.filter((este, i) => arr.indexOf(este) === i).sort();
       }
+      state.games.map((item) => {
+        if (item.favorite == undefined) {
+          item.favorite = false;
+        }
+        if (item.rating == undefined) {
+          item.rating = 0;
+        }
+      });
     },
     filteredFavoritesGames: (state) => {
       if (state.filteredGames && state.filteredGames.length > 0) {
@@ -136,6 +144,9 @@ export const gamesSlice = createSlice({
         );
       }
     },
+    clearFilteredGames: (state) => {
+      state.filteredGames = null;
+    },
     setIsFavorite: (
       state,
       action: PayloadAction<{ idGame: number; isFavorite: boolean }>
@@ -166,7 +177,19 @@ export const gamesSlice = createSlice({
       }
     },
     favoriteGamesSortedByHighestRating: (state) => {
-      state.games &&
+      if (state.filteredGames) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        state.filteredGames.sort((a, b) => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
+          if (a.rating > b.rating) {
+            return -1;
+          } else {
+            return true;
+          }
+        });
+      } else if (state.games) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
         state.games.sort((a, b) => {
@@ -178,12 +201,13 @@ export const gamesSlice = createSlice({
             return true;
           }
         });
+      }
     },
     favoriteGamesSortedByLowestRating: (state) => {
-      state.games &&
+      if (state.filteredGames) {
         // eslint-disable-next-line @typescript-eslint/ban-ts-comment
         //@ts-ignore
-        state.games?.sort((a, b) => {
+        state.filteredGames.sort((a, b) => {
           // eslint-disable-next-line @typescript-eslint/ban-ts-comment
           //@ts-ignore
           if (a.rating < b.rating) {
@@ -192,6 +216,19 @@ export const gamesSlice = createSlice({
             return true;
           }
         });
+      } else if (state.games) {
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        //@ts-ignore
+        state.games.sort((a, b) => {
+          // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+          //@ts-ignore
+          if (a.rating < b.rating) {
+            return -1;
+          } else {
+            return true;
+          }
+        });
+      }
     }
   }
 });
@@ -204,6 +241,7 @@ export const {
   setRating,
   favoriteGamesSortedByHighestRating,
   favoriteGamesSortedByLowestRating,
-  filteredFavoritesGames
+  filteredFavoritesGames,
+  clearFilteredGames
 } = gamesSlice.actions;
 export const gamesReducer = gamesSlice.reducer;

@@ -62,6 +62,6 @@ export const ButtonsWrap: FlexStyle = {
 export const ButtonsText: textProps = {
   size: 's',
   color: 'primary',
-  textdecoration: 'underline white',
+  decoration: 'underline white',
   hover: { comands: 'color: white' }
 };

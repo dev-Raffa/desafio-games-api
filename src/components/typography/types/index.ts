@@ -2,7 +2,7 @@ import { children, breakPoint, hover } from '@/types/layout';
 import { colors } from '@/types/theme';
 
 export interface styledTypography {
-  textdecoration?: string;
+  decoration?: string;
   margin?: string;
   lineheight?: string;
   weight?: string;

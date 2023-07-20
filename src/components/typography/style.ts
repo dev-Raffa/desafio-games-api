@@ -11,6 +11,7 @@ export const Title = styled('h1').attrs<typogaphyStyles>(({ level }) => ({
 }))<titleProps>`
   user-select:none;
   font-weight: ${({ weight }) => weight};
+  text-decoration: ${({decoration})=> decoration};
   text-align: ${({ align }) => align};
   line-height: ${({lineheight})=>lineheight};
   ${({ color, theme }) =>
@@ -55,7 +56,7 @@ export const Title = styled('h1').attrs<typogaphyStyles>(({ level }) => ({
 
 export const Text = styled.p<textProps>`
   user-select:none;
-  text-decoration: ${({textdecoration})=> textdecoration};
+  text-decoration: ${({decoration})=> decoration};
   ${({ size, theme }) =>
     size && `font-size:${theme.typography.sizes[size]}rem;`}
   font-weight: ${({ weight }) => weight};
@@ -72,7 +73,7 @@ export const Text = styled.p<textProps>`
 
 export const TextLink = styled(Link)<textLinkProps>`
   user-select:none;
-  text-decoration: none;
+  text-decoration: ${({decoration})=> decoration? decoration : 'none'};
   display: inline-block;
   ${({ size, theme }) =>
     size && `font-size:${theme.typography.sizes[size]}rem;`}

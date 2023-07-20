@@ -16,11 +16,13 @@ export const ButtonFavorite = ({
   favorite
 }: {
   idGame: number;
-  favorite: boolean;
+  favorite?: boolean;
 }) => {
-  const [isFavorite, setFavorite] = useState<boolean>(favorite);
-  const userId = useAppSelector((state) => state.user.userId);
+  const [isFavorite, setFavorite] = useState<boolean>(
+    favorite ? favorite : false
+  );
   const dispatch = useAppDispatch();
+  const userId = useAppSelector((state) => state.user.userId);
   const games = useAppSelector((state) => state.games.games);
   const obj =
     games &&
@@ -38,7 +40,12 @@ export const ButtonFavorite = ({
       switch (resp) {
         case 'Success': {
           setFavorite(!isFavorite);
-          dispatch(setIsFavorite({ idGame: idGame, isFavorite: !isFavorite }));
+          dispatch(
+            setIsFavorite({
+              idGame: idGame,
+              isFavorite: !isFavorite
+            })
+          );
           break;
         }
         default: {
