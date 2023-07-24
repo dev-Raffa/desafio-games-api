@@ -53,11 +53,16 @@ export const ButtonFavorite = ({
         }
       }
     } else if (userId) {
-      const resp: string = await addFavoriteGame(userId, idGame, 0, isFavorite);
+      const resp: string = await addFavoriteGame(
+        userId,
+        idGame,
+        0,
+        !isFavorite
+      );
       switch (resp) {
         case 'Success': {
           setFavorite(!isFavorite);
-          dispatch(setIsFavorite({ idGame: idGame, isFavorite: isFavorite }));
+          dispatch(setIsFavorite({ idGame: idGame, isFavorite: !isFavorite }));
           break;
         }
         default: {

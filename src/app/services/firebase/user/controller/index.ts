@@ -47,7 +47,11 @@ export async function RegisterNewUser({ name, email, password }: UserDto) {
   const resp = await createUserWithEmailAndPassword(getAuth(), email, password)
     .then((userCredential) => {
       createUser(userCredential.user.uid, email, name);
-      return { user: userCredential.user, message: 'Success' };
+      const user = {
+        name: name,
+        userId: userCredential.user.uid
+      };
+      return { user: user, message: 'Success' };
     })
     .catch((error) => {
       return error.message;

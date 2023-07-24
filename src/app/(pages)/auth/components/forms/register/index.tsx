@@ -33,6 +33,7 @@ export function RegisterForm() {
     const resp: resp = await RegisterNewUser(data);
     switch (resp.message) {
       case 'Success': {
+        console.log(resp.user);
         resp.user && dispatch(login(resp.user));
         router.push('/');
         break;

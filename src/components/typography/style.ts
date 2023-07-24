@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
 import { textLinkProps, textProps, titleProps} from './types';
-import { getBreakPoints } from '../functions';
+import { getBreakPoints, getHover } from '../functions';
 
 //@ts-ignore
 export const Title = styled('h1').attrs<typogaphyStyles>(({ level }) => ({
@@ -69,6 +69,7 @@ export const Text = styled.p<textProps>`
         : `color:${color};`
       : ''};
   ${({breakpoints})=> breakpoints && getBreakPoints(breakpoints)}
+  ${({hover})=> hover && getHover(hover)}
 `;
 
 export const TextLink = styled(Link)<textLinkProps>`

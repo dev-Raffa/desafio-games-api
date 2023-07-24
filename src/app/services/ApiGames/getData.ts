@@ -3,7 +3,7 @@ export async function getGames() {
     'https://games-test-api-81e9fb0d564a.herokuapp.com/api/data',
     {
       headers: { 'dev-email-address': 'teste@gmail.com' },
-      signal: AbortSignal.timeout(5000)
+      signal: AbortSignal.timeout(2000)
     }
   )
     .then((response) => {
@@ -12,8 +12,6 @@ export async function getGames() {
     .catch(() => {
       throw new Error('O servidor demorou para responder, tente mais tarde');
     });
-
-  console.log(response.status);
   if (response.status >= 200 && response.status < 299) {
     return response.json();
   } else if (
