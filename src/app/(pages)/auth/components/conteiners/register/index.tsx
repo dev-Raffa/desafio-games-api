@@ -1,10 +1,10 @@
-import { Button } from '@/components/buttons';
 import { ConteinerFlex } from '@/components/containers';
+import { RegisterForm } from '../../forms/register';
 import { Logo } from '../../logo';
-import { LoginForm } from '../../forms/login';
+import { Button } from '@/components/buttons';
 import * as styles from '../styles';
 
-export const ConteinerLogin = ({
+export const ConteinerRegister = ({
   show,
   handleClick
 }: {
@@ -14,14 +14,15 @@ export const ConteinerLogin = ({
   return (
     <ConteinerFlex
       as="article"
-      opacity={show ? '0' : '100%'}
+      opacity={show ? '100%' : '0'}
       {...styles.Conteiners}
       breakpoints={[styles.conteinerBreakPoints]}
     >
+      <RegisterForm />
       <ConteinerFlex
         as="section"
         {...styles.Sections}
-        breakpoints={[styles.sectionLoginBreakPoints]}
+        breakpoints={[styles.sectionRegisterBreakPoints]}
       >
         <Logo />
         <Button.wrap
@@ -29,10 +30,9 @@ export const ConteinerLogin = ({
           onClick={handleClick}
           {...styles.ButtonsWrap}
         >
-          <Button.text {...styles.ButtonsText}>cadastre-se</Button.text>
+          <Button.text {...styles.ButtonsText}> voltar ao login </Button.text>
         </Button.wrap>
       </ConteinerFlex>
-      <LoginForm />
     </ConteinerFlex>
   );
 };

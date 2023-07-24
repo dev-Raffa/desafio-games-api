@@ -2,6 +2,7 @@
 
 import { styled } from "styled-components";
 import { blockProps } from "./types";
+import { getBreakPoints } from "../functions";
 
 export const BlockStyle = styled('div')<blockProps>`
   ${({position})=> position && `position: ${position};`}
@@ -46,8 +47,8 @@ export const BlockStyle = styled('div')<blockProps>`
   }
   ${({overflow}) => overflow && `overflow: ${overflow};`}
   ${({zindex})=> zindex && `z-index: ${zindex};`}
-
   ${({before})=> before && `&&::before { ${before} }`}
+  ${({breakpoints})=>breakpoints && getBreakPoints(breakpoints)}
 
   ::-webkit-scrollbar {
     width: 0;

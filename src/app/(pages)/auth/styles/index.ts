@@ -1,5 +1,5 @@
 import { FlexStyle } from '@/components/types/global';
-import { textProps } from '@/components/typography/types';
+import { breakPoint } from '@/types/layout';
 
 export const ConteinerWrap: FlexStyle = {
   position: 'relative',
@@ -12,15 +12,6 @@ export const ConteinerWrap: FlexStyle = {
   borderradius: '1.5rem',
   aligny: 'center',
   overflow: 'hidden'
-};
-
-export const Conteiners: FlexStyle = {
-  position: 'absolute',
-  width: '100%',
-  height: '100%',
-  bgcolor: 'transparent',
-  aligny: 'center',
-  transition: 'all 350ms ease'
 };
 
 export const beforeLogin = `
@@ -43,25 +34,32 @@ export const beforeRegister = `
   transition: all 350ms ease;
 `;
 
-export const Sections: FlexStyle = {
-  direction: 'column',
-  alignx: 'center',
-  aligny: 'center',
-  width: '50%',
-  zindex: 2
+export const beforeLoginBreakPoints: breakPoint = {
+  sizes: { maxWidth: '720px' },
+  comands: `
+  &&::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    background-color: black;
+    width: 100%;
+    height: 10%;
+    transition: all 350ms ease 0s;
+  }`
 };
 
-export const ButtonsWrap: FlexStyle = {
-  bgcolor: 'transparent',
-  width: '150px',
-  alignx: 'center',
-  aligny: 'center',
-  border: 'none'
-};
-
-export const ButtonsText: textProps = {
-  size: 's',
-  color: 'white',
-  decoration: 'underline white',
-  hover: { comands: 'color: blue; decoration: none;' }
+export const beforeRegisterBreakPoints: breakPoint = {
+  sizes: { maxWidth: '720px' },
+  comands: `
+  &&::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    background-color: black;
+    width: 100%;
+    height: 10%;
+    transition: all 350ms ease 0s;
+  }`
 };

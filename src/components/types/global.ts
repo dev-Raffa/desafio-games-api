@@ -32,6 +32,7 @@ interface globalStyles {
   after?: string;
   hover?: layoutTypes.hover;
   animation?: layoutTypes.animation;
+  breakpoints?: Array<layoutTypes.breakPoint>;
 }
 
 export interface FlexStyle extends globalStyles {
